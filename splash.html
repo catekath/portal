@@ -1,99 +1,116 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
 <meta charset="utf-8">
-<title>Threat Security Portal</title>
+<title>Threat Security Access</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
 <style>
 body {
     margin: 0;
-    background-color: #3a3a3a;
-    font-family: Arial, sans-serif;
+    min-height: 100vh;
+    background: linear-gradient(145deg, #2e2e2e, #1b1b1b);
+    font-family: Arial, Helvetica, sans-serif;
     color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card {
+    width: 100%;
+    max-width: 420px;
+    background: #3b3b3b;
+    border-radius: 14px;
+    padding: 28px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.7);
     text-align: center;
 }
 
-.container {
-    max-width: 420px;
-    margin: 40px auto;
-    background-color: #5a5a5a;
-    border-radius: 10px;
-    padding: 25px;
-    box-shadow: 0 0 25px rgba(0,0,0,0.6);
-}
-
 .logo {
-    width: 200px;
-    margin-bottom: 15px;
+    width: 220px;
+    max-width: 85%;
+    margin-bottom: 20px;
 }
 
 h1 {
+    margin: 0;
     font-size: 22px;
-    margin-bottom: 5px;
     letter-spacing: 1px;
 }
 
-.subtitle {
-    color: #ff2b2b;
-    font-size: 14px;
-    margin-bottom: 20px;
+.tagline {
+    margin-top: 6px;
+    font-size: 13px;
+    color: #ff3b3b;
+}
+
+hr {
+    border: none;
+    height: 1px;
+    background: rgba(255,255,255,0.1);
+    margin: 22px 0;
 }
 
 p {
     font-size: 14px;
-    line-height: 1.5;
+    line-height: 1.6;
+    color: #dddddd;
 }
 
 button {
-    margin-top: 25px;
     width: 100%;
-    padding: 12px;
-    font-size: 16px;
-    background-color: #ff2b2b;
+    margin-top: 25px;
+    padding: 14px;
+    background: #ff3b3b;
     border: none;
-    border-radius: 6px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
     color: #ffffff;
     cursor: pointer;
 }
 
 button:hover {
-    background-color: #d92323;
+    background: #e03232;
 }
 
 .footer {
-    margin-top: 20px;
+    margin-top: 18px;
     font-size: 11px;
-    color: #cccccc;
+    color: #aaaaaa;
 }
 </style>
 </head>
 
 <body>
 
-<div class="container">
+<div class="card">
 
-    <img src="logo.png" class="logo" alt="Threat Security Logo">
+    <img src="logo.png" class="logo" alt="Threat Security">
 
     <h1>THREAT SECURITY</h1>
-    <div class="subtitle">Response and Analysis</div>
+    <div class="tagline">Response and Analysis</div>
+
+    <hr>
 
     <p>
-    Esta red esta protegida.<br>
-    El trafico puede ser monitoreado y analizado.<br>
-    Accede solo si estas autorizado.
+        Esta red esta protegida y monitoreada.<br>
+        Al continuar aceptas las politicas de uso<br>
+        y autorizas el analisis del trafico.
     </p>
 
     <form method="GET" action="$authaction">
         <input type="hidden" name="tok" value="$tok">
         <input type="hidden" name="redir" value="$redir">
-        <button type="submit">ACEPTAR Y CONTINUAR</button>
+        <button type="submit">ACEPTO Y CONTINUAR</button>
     </form>
 
     <div class="footer">
-        RATS Threat Security Analysis
+        RATS Threat Security Access Control
     </div>
 
 </div>
 
-</body>
-</html>
+</
