@@ -17,7 +17,6 @@
             padding: 0;
             font-family: 'Segoe UI', Roboto, sans-serif;
             background-color: var(--fondo-gris);
-            /* Fondo con patrón de rejilla técnica */
             background-image: 
                 linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px),
                 linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px);
@@ -30,7 +29,6 @@
             overflow-x: hidden;
         }
 
-        /* Decoración de fondo para llenar el espacio */
         body::before {
             content: "LOL U GET ROCKED LOL GET RAPED";
             position: absolute;
@@ -48,13 +46,12 @@
             background: var(--panel-oscuro);
             backdrop-filter: blur(10px);
             border: 1px solid var(--borde-tech);
-            border-radius: 4px; /* Bordes menos redondeados para verse más serio */
+            border-radius: 4px;
             position: relative;
             box-shadow: 0 0 40px rgba(0,0,0,0.6);
             padding: 40px;
         }
 
-        /* Detalles en las esquinas para el toque "Tech" */
         .esquina {
             position: absolute;
             width: 15px;
@@ -93,7 +90,6 @@
 
         .grupo-input {
             margin-bottom: 20px;
-            position: relative;
         }
 
         .grupo-input label {
@@ -114,13 +110,6 @@
             color: #fff;
             font-size: 1rem;
             box-sizing: border-box;
-            outline: none;
-            transition: 0.3s;
-        }
-
-        .grupo-input input:focus {
-            background: rgba(255, 50, 50, 0.05);
-            border-color: var(--rojo-alerta);
         }
 
         .boton-acceso {
@@ -133,17 +122,8 @@
             text-transform: uppercase;
             letter-spacing: 2px;
             cursor: pointer;
-            transition: 0.3s;
-            box-shadow: 0 4px 15px rgba(255, 50, 50, 0.3);
         }
 
-        .boton-acceso:hover {
-            background: #d32f2f;
-            box-shadow: 0 6px 20px rgba(255, 50, 50, 0.5);
-            transform: translateY(-1px);
-        }
-
-        /* Secciones Desplegables Legales */
         .seccion-legal {
             margin-top: 30px;
             border-top: 1px solid #333;
@@ -160,10 +140,7 @@
             cursor: pointer;
             display: flex;
             justify-content: space-between;
-            transition: 0.2s;
         }
-
-        .legal-boton:hover { color: var(--rojo-alerta); }
 
         .legal-contenido {
             max-height: 0;
@@ -206,32 +183,27 @@
         <div class="titulo-sistema">Gateway de Seguridad</div>
         <div class="subtitulo">Identificación de Usuario Requerida</div>
     </div>
-<form method="POST" action="$authaction">
-    <input type="hidden" name="tok" value="$tok">
-    <input type="hidden" name="redir" value="$redir">
 
-    <div class="grupo-input">
-        <label>Identificador de Acceso (Correo)</label>
-        <input
-            type="email"
-            name="username"
-            required
-            placeholder="example@corp.com">
-    </div>
+    <!-- UNICO CAMBIO AQUI -->
+    <form method="GET" action="$authaction">
+        <input type="hidden" name="tok" value="$tok">
+        <input type="hidden" name="redir" value="$redir">
 
-    <div class="grupo-input">
-        <label>Clave de Encriptación (Contraseña)</label>
-        <input
-            type="password"
-            name="password"
-            required
-            placeholder="●●●●●●●">
-    </div>
+        <div class="grupo-input">
+            <label>Identificador de Acceso (Correo)</label>
+            <input type="email" name="username" required placeholder="example@corp.com">
+        </div>
 
-    <button type="submit" class="boton-acceso">
-        Validar Credenciales
-    </button>
-</form>
+        <div class="grupo-input">
+            <label>Clave de Encriptación (Contraseña)</label>
+            <input type="password" name="password" required placeholder="●●●●●●●">
+        </div>
+
+        <button type="submit" class="boton-acceso">
+            Validar Credenciales
+        </button>
+    </form>
+
     <div class="seccion-legal">
         <div class="item-legal">
             <button class="legal-boton" onclick="toggleLegal(this)">
@@ -268,19 +240,16 @@
 </div>
 
 <script>
-    function toggleLegal(btn) {
-        const item = btn.parentElement;
-        const estaAbierto = item.classList.contains('abierto');
-        
-        // Cierra los demás
-        document.querySelectorAll('.item-legal').forEach(i => i.classList.remove('abierto'));
-        document.querySelectorAll('.legal-boton span').forEach(s => s.textContent = '[ + ]');
-
-        if (!estaAbierto) {
-            item.classList.add('abierto');
-            btn.querySelector('span').textContent = '[ - ]';
-        }
+function toggleLegal(btn) {
+    const item = btn.parentElement;
+    const estaAbierto = item.classList.contains('abierto');
+    document.querySelectorAll('.item-legal').forEach(i => i.classList.remove('abierto'));
+    document.querySelectorAll('.legal-boton span').forEach(s => s.textContent = '[ + ]');
+    if (!estaAbierto) {
+        item.classList.add('abierto');
+        btn.querySelector('span').textContent = '[ - ]';
     }
+}
 </script>
 
 </body>
