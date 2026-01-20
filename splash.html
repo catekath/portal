@@ -2,115 +2,149 @@
 <html lang="es">
 <head>
 <meta charset="utf-8">
-<title>Threat Security Access</title>
-
+<title>Threat Security Gateway</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <style>
 body {
     margin: 0;
     min-height: 100vh;
-    background: linear-gradient(145deg, #2e2e2e, #1b1b1b);
-    font-family: Arial, Helvetica, sans-serif;
-    color: #ffffff;
+    background:
+        radial-gradient(circle at top, #1a1a1a, #050505 70%);
+    font-family: "Segoe UI", Arial, sans-serif;
+    color: #e6e6e6;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.card {
+.wrapper {
     width: 100%;
-    max-width: 420px;
-    background: #3b3b3b;
-    border-radius: 14px;
-    padding: 28px;
-    box-shadow: 0 20px 50px rgba(0,0,0,0.7);
-    text-align: center;
+    max-width: 460px;
+    background: linear-gradient(180deg, #111, #1b1b1b);
+    border-radius: 18px;
+    padding: 34px 28px;
+    box-shadow:
+        0 0 0 1px rgba(255,0,0,0.15),
+        0 25px 70px rgba(0,0,0,0.85);
+    position: relative;
+}
+
+.wrapper::before {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    border-radius: 18px;
+    background: linear-gradient(120deg, transparent, rgba(255,0,0,0.25), transparent);
+    pointer-events: none;
+}
+
+.logo-box {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 18px;
 }
 
 .logo {
-    width: 220px;
-    max-width: 85%;
-    margin-bottom: 20px;
+    width: 240px;
+    max-width: 90%;
+    filter:
+        drop-shadow(0 0 12px rgba(255,0,0,0.6))
+        drop-shadow(0 0 28px rgba(255,0,0,0.25));
 }
 
 h1 {
-    margin: 0;
-    font-size: 22px;
+    margin: 10px 0 0;
+    font-size: 24px;
+    letter-spacing: 2px;
+    text-align: center;
+}
+
+.subtitle {
+    text-align: center;
+    margin-top: 6px;
+    font-size: 13px;
+    color: #ff4040;
     letter-spacing: 1px;
 }
 
-.tagline {
-    margin-top: 6px;
-    font-size: 13px;
-    color: #ff3b3b;
-}
-
-hr {
-    border: none;
+.divider {
     height: 1px;
-    background: rgba(255,255,255,0.1);
-    margin: 22px 0;
+    margin: 26px 0;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
 }
 
-p {
+.message {
     font-size: 14px;
-    line-height: 1.6;
-    color: #dddddd;
+    line-height: 1.7;
+    text-align: center;
+    color: #cccccc;
+}
+
+.action {
+    margin-top: 30px;
 }
 
 button {
     width: 100%;
-    margin-top: 25px;
-    padding: 14px;
-    background: #ff3b3b;
+    padding: 16px;
+    background: linear-gradient(180deg, #ff3b3b, #c90000);
     border: none;
-    border-radius: 8px;
+    border-radius: 10px;
     font-size: 16px;
-    font-weight: bold;
+    font-weight: 600;
     color: #ffffff;
     cursor: pointer;
+    box-shadow:
+        0 10px 25px rgba(255,0,0,0.35),
+        inset 0 1px 0 rgba(255,255,255,0.15);
 }
 
 button:hover {
-    background: #e03232;
+    background: linear-gradient(180deg, #ff5a5a, #e60000);
 }
 
 .footer {
-    margin-top: 18px;
+    margin-top: 22px;
+    text-align: center;
     font-size: 11px;
-    color: #aaaaaa;
+    color: #888888;
 }
 </style>
 </head>
 
 <body>
 
-<div class="card">
+<div class="wrapper">
 
-    <img src="logo.png" class="logo" alt="Threat Security">
+    <div class="logo-box">
+        <img src="logo.png" class="logo" alt="Threat Security">
+    </div>
 
     <h1>THREAT SECURITY</h1>
-    <div class="tagline">Response and Analysis</div>
+    <div class="subtitle">RESPONSE & ANALYSIS</div>
 
-    <hr>
+    <div class="divider"></div>
 
-    <p>
-        Esta red esta protegida y monitoreada.<br>
-        Al continuar aceptas las politicas de uso<br>
-        y autorizas el analisis del trafico.
-    </p>
+    <div class="message">
+        Acceso controlado.<br>
+        El trafico puede ser inspeccionado y registrado.<br>
+        Continua solo si cuentas con autorizacion.
+    </div>
 
-    <form method="GET" action="$authaction">
-        <input type="hidden" name="tok" value="$tok">
-        <input type="hidden" name="redir" value="$redir">
-        <button type="submit">ACEPTO Y CONTINUAR</button>
-    </form>
+    <div class="action">
+        <form method="GET" action="$authaction">
+            <input type="hidden" name="tok" value="$tok">
+            <input type="hidden" name="redir" value="$redir">
+            <button type="submit">AUTORIZAR ACCESO</button>
+        </form>
+    </div>
 
     <div class="footer">
-        RATS Threat Security Access Control
+        RATS • Threat Security Gateway
     </div>
 
 </div>
 
-</
+</body>
+</html>
