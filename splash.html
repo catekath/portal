@@ -1,149 +1,200 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="utf-8">
-<title>Threat Security Gateway</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <title>Threat Security Gateway | Secure Access</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
-<style>
-body {
-    margin: 0;
-    min-height: 100vh;
-    background:
-        radial-gradient(circle at top, #1a1a1a, #050505 70%);
-    font-family: "Segoe UI", Arial, sans-serif;
-    color: #e6e6e6;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
+    <style>
+        :root {
+            --primary-red: #ff3b3b;
+            --dark-red: #8b0000;
+            --bg-dark: #0a0a0a;
+            --glass-bg: rgba(20, 20, 20, 0.85);
+            --accent-glow: rgba(255, 59, 59, 0.3);
+        }
 
-.wrapper {
-    width: 100%;
-    max-width: 460px;
-    background: linear-gradient(180deg, #111, #1b1b1b);
-    border-radius: 18px;
-    padding: 34px 28px;
-    box-shadow:
-        0 0 0 1px rgba(255,0,0,0.15),
-        0 25px 70px rgba(0,0,0,0.85);
-    position: relative;
-}
+        body {
+            margin: 0;
+            min-height: 100vh;
+            background: 
+                radial-gradient(circle at center, #1a0a0a 0%, #050505 100%);
+            font-family: 'Inter', sans-serif;
+            color: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
 
-.wrapper::before {
-    content: "";
-    position: absolute;
-    inset: -1px;
-    border-radius: 18px;
-    background: linear-gradient(120deg, transparent, rgba(255,0,0,0.25), transparent);
-    pointer-events: none;
-}
+        /* Fondo animado sutil */
+        body::before {
+            content: "";
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: repeating-linear-gradient(0deg, transparent, transparent 1px, rgba(255, 0, 0, 0.03) 1px, rgba(255, 0, 0, 0.03) 2px);
+            pointer-events: none;
+            animation: scanline 10s linear infinite;
+        }
 
-.logo-box {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 18px;
-}
+        @keyframes scanline {
+            from { transform: translateY(0); }
+            to { transform: translateY(-50%); }
+        }
 
-.logo {
-    width: 240px;
-    max-width: 90%;
-    filter:
-        drop-shadow(0 0 12px rgba(255,0,0,0.6))
-        drop-shadow(0 0 28px rgba(255,0,0,0.25));
-}
+        .wrapper {
+            width: 90%;
+            max-width: 420px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            z-index: 1;
+            position: relative;
+        }
 
-h1 {
-    margin: 10px 0 0;
-    font-size: 24px;
-    letter-spacing: 2px;
-    text-align: center;
-}
+        .wrapper::after {
+            content: "";
+            position: absolute;
+            top: -2px; left: -2px; right: -2px; bottom: -2px;
+            background: linear-gradient(135deg, var(--primary-red), transparent, var(--primary-red));
+            border-radius: 24px;
+            z-index: -1;
+            opacity: 0.2;
+        }
 
-.subtitle {
-    text-align: center;
-    margin-top: 6px;
-    font-size: 13px;
-    color: #ff4040;
-    letter-spacing: 1px;
-}
+        .logo-box {
+            margin-bottom: 25px;
+        }
 
-.divider {
-    height: 1px;
-    margin: 26px 0;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
-}
+        .logo {
+            width: 180px;
+            height: auto;
+            filter: drop-shadow(0 0 15px var(--accent-glow));
+            transition: transform 0.3s ease;
+        }
 
-.message {
-    font-size: 14px;
-    line-height: 1.7;
-    text-align: center;
-    color: #cccccc;
-}
+        .logo:hover {
+            transform: scale(1.05);
+        }
 
-.action {
-    margin-top: 30px;
-}
+        h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 20px;
+            margin: 0;
+            letter-spacing: 4px;
+            color: #ffffff;
+            text-transform: uppercase;
+        }
 
-button {
-    width: 100%;
-    padding: 16px;
-    background: linear-gradient(180deg, #ff3b3b, #c90000);
-    border: none;
-    border-radius: 10px;
-    font-size: 16px;
-    font-weight: 600;
-    color: #ffffff;
-    cursor: pointer;
-    box-shadow:
-        0 10px 25px rgba(255,0,0,0.35),
-        inset 0 1px 0 rgba(255,255,255,0.15);
-}
+        .subtitle {
+            font-size: 11px;
+            color: var(--primary-red);
+            letter-spacing: 3px;
+            margin-top: 8px;
+            font-weight: 600;
+        }
 
-button:hover {
-    background: linear-gradient(180deg, #ff5a5a, #e60000);
-}
+        .divider {
+            height: 1px;
+            margin: 30px auto;
+            width: 60%;
+            background: linear-gradient(90deg, transparent, var(--primary-red), transparent);
+        }
 
-.footer {
-    margin-top: 22px;
-    text-align: center;
-    font-size: 11px;
-    color: #888888;
-}
-</style>
+        .message {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #b0b0b0;
+            margin-bottom: 30px;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            background: rgba(255, 59, 59, 0.1);
+            border: 1px solid var(--primary-red);
+            border-radius: 50px;
+            color: var(--primary-red);
+            font-size: 10px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        button {
+            width: 100%;
+            padding: 16px;
+            background: var(--primary-red);
+            border: none;
+            border-radius: 12px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 14px;
+            font-weight: 700;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(255, 59, 59, 0.2);
+            text-transform: uppercase;
+        }
+
+        button:hover {
+            background: #ff5252;
+            transform: translateY(-2px);
+            box-shadow: 0 12px 25px rgba(255, 59, 59, 0.4);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        .footer {
+            margin-top: 30px;
+            font-size: 10px;
+            color: #555;
+            letter-spacing: 1px;
+        }
+
+        .footer b {
+            color: #888;
+        }
+    </style>
 </head>
-
 <body>
 
 <div class="wrapper">
-
+    <div class="status-badge">Secure Connection Required</div>
+    
     <div class="logo-box">
-        <img src="logo.png" class="logo" alt="Threat Security">
+        <img src="logo.jpg" class="logo" alt="Threat Security Logo">
     </div>
 
-    <h1>THREAT SECURITY</h1>
-    <div class="subtitle">RESPONSE & ANALYSIS</div>
+    <h1>Threat Security</h1>
+    <div class="subtitle">System Authorization</div>
 
     <div class="divider"></div>
 
     <div class="message">
-        Acceso controlado.<br>
-        El trafico puede ser inspeccionado y registrado.<br>
-        Continua solo si cuentas con autorizacion.
+        Este nodo requiere autenticación.<br>
+        El tráfico está siendo monitoreado bajo el protocolo <b>RATS-SEC</b>.
     </div>
 
-    <div class="action">
-        <form method="GET" action="$authaction">
-            <input type="hidden" name="tok" value="$tok">
-            <input type="hidden" name="redir" value="$redir">
-            <button type="submit">AUTORIZAR ACCESO</button>
-        </form>
-    </div>
+    <form method="GET" action="$authaction">
+        <input type="hidden" name="tok" value="$tok">
+        <input type="hidden" name="redir" value="$redir">
+        <button type="submit">Establecer Enlace</button>
+    </form>
 
     <div class="footer">
-        RATS • Threat Security Gateway
+        TERMINAL ID: <b>TSG-TX-2026</b> <br>
+        &copy; RATS THREAT SECURITY GATEWAY
     </div>
-
 </div>
 
 </body>
