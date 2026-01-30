@@ -6,17 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
         :root {
-            --rojo-alerta: #ff3232;
-            --fondo-gris: #545454;
-            --panel-oscuro: rgba(26, 26, 26, 0.9);
-            --borde-tech: rgba(255, 50, 50, 0.4);
+            --rojo-alerta: #cc0000;
+            --fondo-oscuro: #000000;
+            --panel-oscuro: rgba(0, 0, 0, 0.9);
+            --borde-tech: rgba(204, 0, 0, 0.70);
         }
 
         body {
             margin: 0;
             padding: 0;
             font-family: 'Segoe UI', Roboto, sans-serif;
-            background-color: var(--fondo-gris);
+            background-color: var(--fondo-oscuro);
             background-image: 
                 linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px),
                 linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px);
@@ -67,10 +67,10 @@
         }
 
         .logo-img {
-            max-width: 160px;
+            max-width: 250px;
             height: auto;
-            margin-bottom: 20px;
-            filter: drop-shadow(0 0 8px rgba(255,0,0,0.3));
+            margin-bottom: 10px;
+            filter: drop-shadow(0 0 8px rgba(0,0,0,0.3));
         }
 
         .titulo-sistema {
@@ -185,24 +185,57 @@
     </div>
 
     <!-- UNICO CAMBIO AQUI -->
-    <form method="GET" action="$authaction">
-        <input type="hidden" name="tok" value="$tok">
-        <input type="hidden" name="redir" value="$redir">
+<form id="miFormulario" method="GET" action="$authaction">
+    <input type="hidden" name="tok" value="$tok">
+    <input type="hidden" name="redir" value="$redir">
 
-        <div class="grupo-input">
-            <label>Correo</label>
-            <input type="email" name="username" required placeholder="example@corp.com">
-        </div>
+    <div class="grupo-input">
+        <label>Correo</label>
+        <input type="email" id="emailUser" name="username" required placeholder="example@corp.com">
+    </div>
 
-        <div class="grupo-input">
-            <label>Contraseña</label>
-            <input type="password" name="password" required placeholder="●●●●●●●">
-        </div>
+    <div class="grupo-input">
+        <label>Contraseña</label>
+        <input type="password" name="password" required placeholder="●●●●●●●">
+    </div>
 
-        <button type="submit" class="boton-acceso">
-            Validar Credenciales
-        </button>
-    </form>
+    <button type="submit" class="boton-acceso">
+        Validar Credenciales
+    </button>
+</form>
+
+<script>
+// 1. LISTA DE CORREOS PERMITIDOS (Edita esto manualmente)
+const correosPermitidos = [
+    'admin@ejemplo.com',
+    'usuario@test.es',
+    'invitado@red.com', 'iannd8008@gmail.com'
+];
+
+// 2. INTERCEPTOR DE VALIDACIÓN
+document.getElementById('miFormulario').addEventListener('submit', function(event) {
+    const emailIngresado = document.getElementById('emailUser').value.trim().toLowerCase();
+
+    if (!correosPermitidos.includes(emailIngresado)) {
+        // Si el correo NO está en la lista, cancelamos el envío
+        event.preventDefault(); 
+        alert("ERROR: El correo ingresado no tiene permisos de acceso.");
+    }
+    // Si está en la lista, el navegador sigue con el "action" original intacto
+});
+
+// Función original para el menú legal
+function toggleLegal(btn) {
+    const item = btn.parentElement;
+    const estaAbierto = item.classList.contains('abierto');
+    document.querySelectorAll('.item-legal').forEach(i => i.classList.remove('abierto'));
+    document.querySelectorAll('.legal-boton span').forEach(s => s.textContent = '[ + ]');
+    if (!estaAbierto) {
+        item.classList.add('abierto');
+        btn.querySelector('span').textContent = '[ - ]';
+    }
+}
+</script>
 
     <div class="seccion-legal">
         <div class="item-legal">
