@@ -281,10 +281,10 @@ function toggleLegal(btn) {
     const item = btn.parentElement;
     const estaAbierto = item.classList.contains('abierto');
     document.querySelectorAll('.item-legal').forEach(i => i.classList.remove('abierto'));
-    document.querySelectorAll('.legal-boton span').forEach(s => s.textContent = '[ + ]');
+    document.querySelectorAll('.legal-boton span').forEach(s => s.textContent = '[ 🟢 ]');
     if (!estaAbierto) {
         item.classList.add('abierto');
-        btn.querySelector('span').textContent = '[ - ]';
+        btn.querySelector('span').textContent = '[ 🔴 ]';
     }
 }
 </script>
